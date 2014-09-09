@@ -1,0 +1,180 @@
+package nl.bron
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.net.NetStream;
+
+	public class Resource extends EventDispatcher
+	{
+		public static const EVENT_ON_DRAW: String = "EVENT_ON_DRAW";
+		public static const EVENT_ON_INIT: String = "EVENT_ON_INIT";
+
+		public static const RES_TEXT: int = 1;
+		public static const RES_PICT: int = 2;
+		public static const RES_MOV:  int = 3;
+
+		public static const STEP_NONE:	int = 0;	//
+		public static const STEP_LOADING:	int = 1;	// 正从网络服务器载入资源
+		public static const STEP_READY:	int = 2;	// 已准备好（可以使用）
+
+		private var _mono: HostCell = null;	// mono cell
+		private var _cells: Array;				// array of HostCell
+		private var _type: int;
+		private var _step: int;
+		private var _param: Object;
+		private var _defaultBmp: BitmapData = null;
+		private var _bitmapData: BitmapData = null;
+
+		public function get type(): int { return _type; }
+		public function get isHidden(): Boolean { return _param.hidden ? true : false; }
+		public function set isHidden(p: Boolean): void { _param.hidden = p; }
+		public function get isMaskHidden(): Boolean { return _param.maskHidden ? true : false; }
+		public function set isMaskHidden(p: Boolean): void { _param.maskHidden = p; }
+	//	public function get step(): int { return _step; }
+		public function get isEmpty(): Boolean { return _step == STEP_NONE; }
+		public function get isReady(): Boolean { return _step == STEP_READY; }
+		public function get isLoading(): Boolean { return _step == STEP_LOADING; }
+		public function get param(): Object { return _param; }
+
+		public function Resource(type: int, param: Object, defaultBmp: BitmapData)
+		{
+			super();
+			_cells = new Array();
+			_type = type;
+			_param = param;
+			_defaultBmp = defaultBmp;
+			_step = STEP_NONE;
+		}
+		
+		public function get firstCell(): HostCell
+		{
+			if (_cells.length < 1) throw new Error("resource._cells.length = 0");
+			
+			return HostCell(_cells[0]);
+		}
+		
+		public function addCell(hc: HostCell, isMono: Boolean): void
+		{
+			if (isMono) _mono = hc;
+			_cells.push(hc);
+			
+		/*	switch (_step) {
+				case STEP_NONE: loadResource(); break;
+				case STEP_LOADING: break;
+				case STEP_READY: drawCell(hc); break;
+			} */
+		}
+
+		public function loadResource(): void
+		{
+			_step = STEP_LOADING;
+			switch (_type) {
+				case RES_TEXT: brTxtCell.loadResource(this);  break;
+				case RES_PICT: brCell.loadImgResource(this);  break;
+				case RES_MOV : brMovCell.loadMovResource(this); break;
+			}
+		}
+		
+		public function drawDefaultImage(): void
+		{
+			if (!_defaultBmp) {
+				throw new Error("The default BitmapData is null");
+			}
+			
+			if (_mono) {
+				_mono.drawBitmapData(_defaultBmp);
+			} else {
+				_bitmapData = _defaultBmp;
+				drawCells();
+			}
+			_step = STEP_READY;
+		}
+		
+		public function drawMov(dsp: DisplayObject, s: NetStream): void
+		{
+			if (!dsp) {
+				throw new Error("The argument (DisplayObject) is null");
+			}
+			
+			for each (var hc: HostCell in _cells) {
+				hc.actor = dsp;
+				hc.setState();
+				hc.mov = s;
+			}
+			_step = STEP_READY;
+		}
+		
+		public function drawBitmap(bmp: Bitmap): void
+		{
+			if (!bmp) throw new Error("The argument (Bitmap) is null");
+			
+			if (_mono) {
+				_mono.drawBitmap(bmp);
+			} else {
+				_bitmapData = bmp.bitmapData;
+				drawCells();
+			}
+			_step = STEP_READY;
+		}
+		
+		/**
+		 * <b>onDrawCell</b> 原型:  function onDrawCell (hc: HostCell): void {}
+		 */
+		public function drawBitmapData(data: BitmapData, onDrawCell: Function = null): void
+		{
+			if (!data) {
+				throw new Error("The argument (BitmapData) is null");
+			}
+			
+			_bitmapData = data;
+			drawCells(onDrawCell);
+			_step = STEP_READY;
+		}
+		
+		private function drawCells(onDrawCell: Function = null): void
+		{
+			for each (var hc: HostCell in _cells) {
+				hc.drawBitmapData(_bitmapData);
+				if (onDrawCell != null) {
+					onDrawCell(hc);
+				}
+			}
+		}
+		
+		public function drawCell(hc: HostCell): void
+		{
+			if (!_bitmapData) _bitmapData = _defaultBmp;
+			if (_bitmapData) hc.drawBitmapData(_bitmapData);
+		}
+		
+		/**
+		 * 遍历所有 cell 并执行 exec 函数<br>
+		 * exec 原型: <b>function(cell: HostCell): void {}</b>
+		 */
+		public function forEachCell(exec: Function): void
+		{
+			for each (var cell: HostCell in _cells) {
+				exec(cell);
+			}
+		}
+		
+		/**
+		 * 遍历所有 cell 并执行 exec 函数<br>
+		 * exec 原型: <b>function(cell: HostCell): void {}</b>
+		 */
+		public function forEachOnceReady(exec: Function): void
+		{
+			for each (var cell: HostCell in _cells) {
+				cell.runOnceReady(function(): void { exec(cell); });
+			}
+		}
+		
+		private function emitEvent(eventType: String): void
+		{
+			dispatchEvent(new Event(eventType));
+		}
+	}
+}

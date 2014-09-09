@@ -1,0 +1,191 @@
+package nl.bron
+{
+	import flash.filters.BevelFilter;
+	import flash.filters.BitmapFilterQuality;
+	import flash.filters.BitmapFilterType;
+	import flash.filters.BlurFilter;
+	import flash.filters.ColorMatrixFilter;
+	import flash.filters.ConvolutionFilter;
+	import flash.filters.GlowFilter;
+
+	public class Filters
+	{
+		public function Filters()
+		{
+			
+		}
+		
+		/**
+		 * 默认
+		 */
+		public static function get none():*
+		{
+			return null;
+		}
+		
+		/**
+		 * 光亮效果
+		 */
+		public static function get effectOfLight():ConvolutionFilter
+		{
+			var matrix:Array = new Array();
+			matrix = matrix.concat([5, 5, 5]);
+			matrix = matrix.concat([5, 0, 5]);
+			matrix = matrix.concat([5, 5, 5]);
+			var convolution:ConvolutionFilter = new ConvolutionFilter();
+			convolution.matrixX = 3;
+			convolution.matrixY = 3;
+			convolution.matrix = matrix;
+			convolution.divisor = 30;
+			return convolution;
+		}
+		
+		/**
+		 * 墨汁
+		 */
+		public static function get ink():ColorMatrixFilter
+		{
+			var _local_1:Number = (1 / 3);
+			var _local_2:Number = (1 / 3);
+			var _local_3:Number = (1 / 3);
+			var m_sepia:ColorMatrixFilter = new ColorMatrixFilter([0.39300000667572, 0.768999993801117, 0.188999995589256, 0, 0, 0.349000006914139, 0.685999989509583, 0.167999997735023, 0, 0, 0.272000014781952, 0.533999979496002, 0.130999997258186, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1]);
+			return m_sepia;
+		}
+		
+		/**
+		 * 锐化
+		 */
+		public static function get sharpen():ConvolutionFilter
+		{
+			var MATRIX:Array = [0,-1,0,-1,5,-1,0,-1,0];
+			var m_sharpen:ConvolutionFilter = new ConvolutionFilter(3,3,MATRIX);
+			return m_sharpen;
+		}
+		
+		/**
+		 * 模糊
+		 */
+		public static function get fuzzy():BlurFilter
+		{
+			
+			var m_blur:BlurFilter = new BlurFilter();
+			return m_blur;
+		}
+		
+		/**
+		 * 黑白
+		 */
+		public static function get blackAndWhite():*
+		{
+			var _loc1_:Number = 1 / 3;
+			var _loc2_:Number = 1 / 3;
+			var _loc3_:Number = 1 / 3;
+			var m_bw:ColorMatrixFilter = new ColorMatrixFilter([_loc1_,_loc2_,_loc3_,0,0,_loc1_,_loc2_,_loc3_,0,0,_loc1_,_loc2_,_loc3_,0,0,0,0,0,1,0]);
+			return m_bw;
+		}
+		
+		/**
+		 * 背反效果
+		 */
+		public static function get antinomie():ConvolutionFilter
+		{
+			var matrix:Array = new Array();
+			matrix = matrix.concat([0, -1, 0]);
+			matrix = matrix.concat([-1, 4, -1]);
+			matrix = matrix.concat([0, -1, 0]);
+			var convolution:ConvolutionFilter = new ConvolutionFilter();
+			convolution.matrixX = 3;
+			convolution.matrixY = 3;
+			convolution.matrix = matrix;
+			convolution.divisor = 1;
+			return convolution;
+		}
+		
+		/**
+		 * 浮雕效果
+		 */
+		public static function get anaglyph():ConvolutionFilter
+		{
+			var matrix:Array = new Array();
+			matrix = matrix.concat([-2, -1, 0]);
+			matrix = matrix.concat([-1, 1, 1]);
+			matrix = matrix.concat([0, 1, 2]);
+			var convolution:ConvolutionFilter = new ConvolutionFilter();
+			convolution.matrixX = 3;
+			convolution.matrixY = 3;
+			convolution.matrix = matrix;
+			convolution.divisor = 1;
+			return convolution;
+		}
+		
+		/**
+		 * 卷积滤镜
+		 */
+		public static function get convolution():ConvolutionFilter
+		{
+			var matrix:Array = new Array();
+			matrix = matrix.concat([0, 1, 0]);
+			matrix = matrix.concat([1, 1, 1]);
+			matrix = matrix.concat([0, 1, 0]);
+			var convolution:ConvolutionFilter = new ConvolutionFilter();
+			convolution.matrixX = 3;
+			convolution.matrixY = 3;
+			convolution.matrix = matrix;
+			convolution.divisor = 5;
+			return convolution;
+		}
+		
+		/**
+		 * 颜色矩阵滤镜
+		 */
+		public static function get colorMatrix():ColorMatrixFilter
+		{
+			var matrix:Array = new Array();
+			matrix = matrix.concat([0.3086, 0.6094, 0.082, 0, 0]); // red
+			matrix = matrix.concat([0.3086, 0.6094, 0.082, 0, 0]); // green
+			matrix = matrix.concat([0.3086, 0.6094, 0.082, 0, 0]); // blue
+			matrix = matrix.concat([0, 0, 0, 1, 0]); // alpha
+			var gray:ColorMatrixFilter = new ColorMatrixFilter(matrix);
+			return gray;
+		}
+		
+		/**
+		 * 发光滤镜
+		 */
+		public static function get glow():GlowFilter
+		{
+			var glow:GlowFilter = new GlowFilter();
+			glow.blurX = 20;
+			glow.blurY = 20;
+			glow.strength = 1.5;
+			glow.quality = BitmapFilterQuality.MEDIUM;
+			glow.color = 0x00ff00;
+			glow.alpha = 1;
+			glow.knockout = false;
+			glow.inner = true;
+			return glow;
+		}
+		
+		/**
+		 * 斜角滤镜
+		 */
+		public static function get bevel():BevelFilter
+		{
+			var bevel:BevelFilter = new BevelFilter();
+			bevel.blurX = 15;
+			bevel.blurY = 15;
+			bevel.strength = 2;
+			bevel.quality = BitmapFilterQuality.LOW;
+			bevel.shadowColor = 0x000000;
+			bevel.shadowAlpha = 1;
+			bevel.highlightColor = 0xFFFFFF;
+			bevel.highlightAlpha = 1;
+			bevel.angle = 45;
+			bevel.distance = 5;
+			bevel.knockout = false;
+			bevel.type = BitmapFilterType.INNER;
+			return bevel;
+		}
+	}
+	
+}

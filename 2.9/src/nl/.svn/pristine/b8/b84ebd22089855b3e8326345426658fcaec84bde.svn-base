@@ -1,0 +1,94 @@
+package nl.service
+{
+	import nl.comm.JSONLoader;
+
+	public class WebServer		// 服务配置（公共配置）
+	{
+		public static var fontServiceUrl: String = "http://192.168.0.212:88/app/font";
+		public static var fontServiceUrlPlus: String = "http://192.168.0.212:88/app/font";
+		public static var picServiceUrl: String = "";
+		public static var imageSericeUrl: String = "http://192.168.0.212/imageUp.php";
+		public static var hostUrl: String = "";
+		public static var fileFtp: String = "";
+
+		public static var hostPath: String = "";
+		public static var swfPath: String = "";
+		public static var sysPicsPath: String = "Content/FLEX/SysPicList.xml";
+		public static var usrPicsPath: String = "Main/App/GetUserPics";
+		public static var headPicsPath: String = "Main/App/GetHeads";
+		public static var encodeTempPath: String = "d:/Temp/";
+		
+		public static var imageMaxWidth: int = 800;
+		public static var imageMaxHeight: int = 800;
+		public static var imageMaxArea: int = 409600;
+		public static var imageMaxSize: int = 2500;
+		
+		private static var _funcs: Array = new Array();
+		private static var _inited: Boolean = false;
+		private static var loading: Boolean = false;
+		
+		public static function run(exec: Function) : void
+		{
+			if (_inited) {
+				exec();
+			} else {
+				_funcs.push(exec);
+			}
+		}
+		
+		public static function setTestMode(): void
+		{
+			_inited = true;
+		}
+		
+		public static function initConfig(u: String): void
+		{
+			swfPath = u;
+			hostPath = new RegExp("http://.*?/", "gi").exec(u);
+			if (loading || _inited) { return; }
+			loading = true;
+			JSONLoader.load(swfPath + "config.html", function (r : Object) : void {
+				_inited = true;
+				if (r.fontServiceUrl != undefined) { fontServiceUrl = r.fontServiceUrl; }
+				if (r.fontServiceUrlPlus != undefined) { fontServiceUrlPlus = r.fontServiceUrlPlus; }
+				if (r.imageSericeUrl != undefined) { imageSericeUrl = r.imageSericeUrl; }
+				if (r.sysPicsPath != undefined) { sysPicsPath = r.sysPicsPath; }
+				if (r.usrPicsPath != undefined) { usrPicsPath = r.usrPicsPath; }
+				if (r.headPicsPath != undefined) { headPicsPath = r.headPicsPath; }
+				if (r.imageMaxWidth != undefined) { imageMaxWidth = r.imageMaxWidth; }
+				if (r.imageMaxHeight != undefined) { imageMaxHeight = r.imageMaxHeight; }
+				if (r.imageMaxArea != undefined) { imageMaxArea = r.imageMaxArea; }
+				if (r.imageMaxSize != undefined) { imageMaxSize = r.imageMaxSize; }
+				if (r.encodeTempPath != undefined) { encodeTempPath = r.encodeTempPath; }
+				if (r.hostUrl != undefined) { hostUrl = r.hostUrl; }
+				if (r.fileFtp != undefined) { fileFtp = r.fileFtp; }
+				if (r.picServiceUrl != undefined) { picServiceUrl = r.picServiceUrl; }
+				_funcs.forEach(function (exec: Function, i: int, a: Array) : void { exec(); });
+				_funcs = undefined;
+			});
+		}
+
+		public static function fitSize(width: int, height: int, maxWidth: int = 0, maxHeight: int = 0): Number
+		{
+			if (maxWidth == 0) { maxWidth = imageMaxWidth; }
+			if (maxHeight == 0) { maxHeight = imageMaxHeight; }
+			var rWidth: int = width;
+			var rHeight: int = height;
+			var r: Number = 1;
+			if (rWidth > maxWidth)
+			{
+				r = maxWidth / rWidth;
+			}
+			if (rHeight * r > maxHeight)
+			{
+				r = maxHeight / rHeight;
+			}
+			if (rWidth * rHeight * r * r > imageMaxArea)
+			{
+				r = Math.sqrt(imageMaxArea / rWidth / rHeight);
+			}
+			return r
+		}
+
+	}
+}

@@ -1,0 +1,92 @@
+package nl.effects.tween
+{
+	import flash.display.InteractiveObject;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.filters.GlowFilter;
+	
+	public class GlowTween
+	{
+		private static const _repeatMax: int = 2;
+		private static const _items: Array = [		// alpha: 透明度（0=全透明, 1=不透明），blur: 模糊度（0~255）
+			{ alpha: 0.0, blur: 0 },
+			{ alpha: 0.1, blur: 2 },
+			{ alpha: 0.2, blur: 4 },
+			{ alpha: 0.3, blur: 6 },
+			{ alpha: 0.4, blur: 8 }
+		//	{ alpha: 0.5, blur: 10 },
+	//		{ alpha: 0.5, blur: 12 },
+		//	{ alpha: 0.5, blur: 14 },
+	//		{ alpha: 0.6, blur: 16 }
+		//	{ alpha: 0.6, blur: 18 },
+	//		{ alpha: 0.7, blur: 20 },
+		//	{ alpha: 0.6, blur: 22 },
+	//		{ alpha: 0.8, blur: 24 },
+		//	{ alpha: 0.8, blur: 26 },
+	//		{ alpha: 0.9, blur: 28 },
+		//	{ alpha: 0.9, blur: 30 },
+	//		{ alpha: 1.0, blur: 32 }
+		];
+
+		private var _target: InteractiveObject;
+		private var _color: uint;
+		private var _itemIndex: int;
+		private var _repeat: int;
+		private var _reverse: Boolean = false;
+		
+		public function GlowTween(target: InteractiveObject, color: uint = 0xff0000)
+		{
+			_color = color;
+			_itemIndex = 0;
+			_repeat = _repeatMax;
+			_target = target;
+			_target.addEventListener(MouseEvent.ROLL_OVER, startGlowHandler);
+			_target.addEventListener(MouseEvent.ROLL_OUT, stopGlowHandler);
+		}
+		
+		public function remove(): void
+		{
+			_target.removeEventListener(MouseEvent.ROLL_OVER, startGlowHandler);
+			_target.removeEventListener(MouseEvent.ROLL_OUT, stopGlowHandler);
+			_target.removeEventListener(Event.ENTER_FRAME, blinkHandler);
+			_target.filters = null;
+			_target = null;
+		}
+		
+		private function startGlowHandler(evt: MouseEvent): void
+		{
+			_target.addEventListener(Event.ENTER_FRAME, blinkHandler, false, 0, true);
+		}
+		
+		private function stopGlowHandler(evt: MouseEvent):void
+		{
+			_target.removeEventListener(Event.ENTER_FRAME, blinkHandler);
+			_target.filters = null;
+		}
+		
+		private function blinkHandler(e: Event): void
+		{
+			var i: Object = _items[_itemIndex];
+			var glow: GlowFilter = new GlowFilter(_color, i.alpha, i.blur, i.blur, 2, 2);
+			_target.filters = [glow];
+			
+			_repeat--;
+			if (_repeat > 0) return;
+			
+			_repeat = _repeatMax;
+			if (_reverse) {
+				_itemIndex--;
+				if (_itemIndex < 0) {
+					_itemIndex = 0;
+					_reverse = false;
+				}
+			} else {
+				_itemIndex++;				// 下组参数
+				if (_itemIndex >= _items.length) {
+					_itemIndex = _items.length - 1;
+					_reverse = true;
+				}
+			}
+		}
+	}
+}

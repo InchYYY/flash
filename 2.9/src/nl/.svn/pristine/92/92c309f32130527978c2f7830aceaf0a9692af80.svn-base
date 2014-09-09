@@ -1,0 +1,233 @@
+package nl.util
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.Loader;
+	import flash.display.LoaderInfo;
+	import flash.display.MovieClip;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.NetStatusEvent;
+	import flash.media.Video;
+	import flash.net.NetConnection;
+	import flash.net.NetStream;
+	import flash.net.URLLoader;
+	import flash.net.URLLoaderDataFormat;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.URLStream;
+	import flash.net.URLVariables;
+	import flash.net.navigateToURL;
+	import flash.utils.ByteArray;
+	
+	public class Net
+	{
+		public function Net()
+		{
+		}
+		
+		/*********************************************************************************************************************
+		 * 【向服务器发送请求，返回json格式字符串】<br>
+		 * <b>url:</b> 请求目标url<br>
+		 * <b>onComplete:</b> 载入器完成时回调，原型：function (data: Object): void {}<br>
+		 * <b>onSetReqData:</b> 填请求数据时回调，原型：function (data: URLVariables): Object {}<br>
+		 * <b>onLoaderError:</b> 载入器出错时回调，原型：function (e: IOErrorEvent): void {}<br>
+		 * <b>isPost:</b> 是否用Post方法（默认用Get方法）<br>
+		 * <b>contentType:</b> 请求的内容类型
+		 */
+		public static function getXml(url: String,
+										 onComplete: Function = null,		// 载入器完成时回调
+										 onSetReqData: Function = null,		// 填请求数据时回调
+										 onLoaderError: Function = null,	// 载入器出错时回调
+										 isPost: Boolean = false,
+										 contentType: String = ""
+										): URLLoader
+		{
+			var req: URLRequest = new URLRequest(url);
+			if (isPost) { req.method = URLRequestMethod.POST; }
+			if (contentType) { req.contentType = contentType; }
+			
+			var vdata: URLVariables = new URLVariables();
+			vdata["savetime"] = new Date().time.toString();
+			req.data = (onSetReqData != null) ? onSetReqData(vdata) : vdata;	// 填入请求数据
+
+			var loader: URLLoader = new URLLoader();
+			if (onComplete != null)
+				loader.addEventListener(Event.COMPLETE, function (e: Event): void { onComplete(loader.data); });
+			if (onLoaderError != null)
+				loader.addEventListener(IOErrorEvent.IO_ERROR, onLoaderError);
+
+			loader.load(req);
+
+			return loader;
+		}
+		
+		/*********************************************************************************************************************
+		 * <b>url:</b> 上传请求的目标url<br>
+		 * <b>data:</b> 要上传的数据<br>
+		 * <b>onComplete:</b> 完成时回调，原型：function (data: Object): void {}<br>
+		 * <b>onError:</b> 出错时回调，原型：function (e: IOErrorEvent): void {}
+		 */
+		public static function uploadStream(url: String,
+											   data: ByteArray,
+											   onComplete: Function = null,
+											   onError: Function = null
+											  ): URLLoader
+		{
+			return getXml(url,
+						   onComplete,
+						   function (v: URLVariables): ByteArray { return data },
+						   onError,
+						   true,
+						   "application/octet-stream");
+		}
+		
+		/*********************************************************************************************************************
+		 * <b>url:</b> 上传请求的目标url<br>
+		 * <b>data:</b> 要上传的数据<br>
+		 * <b>onComplete:</b> 完成时回调，原型：function (data: Object): void {}<br>
+		 * <b>onError:</b> 出错时回调，原型：function (e: IOErrorEvent): void {}
+		 */
+		public static function postData(url: String,
+										   data: Object,
+										   onComplete: Function,
+										   onError: Function = null
+										  ): URLLoader
+		{
+			return getXml(url,
+						   onComplete,
+						   function (d: URLVariables): Object { return data; },
+						   onError,
+						   true,
+						   "application/octet-stream");
+		}
+		
+		/*********************************************************************************************************************
+		 * <b>url:</b> 请求的目标url<br>
+		 * <b>onComplete:</b> 完成时回调，原型：function (data: ByteArray): void {}<br>
+		 */
+		public static function getStream(url: String, onComplete: Function): URLStream
+		{
+			var stream: URLStream = new URLStream();
+			stream.load(new URLRequest(url));
+			stream.addEventListener(Event.COMPLETE, function (e: Event): void {
+				if (onComplete != null) { 
+					var d: ByteArray = new ByteArray();
+					stream.readBytes(d, 0, stream.bytesAvailable);
+					onComplete(d);
+				}
+			});
+			return stream;
+		}
+		
+		/*********************************************************************************************************************
+		 * 重定向到 url
+		 */
+		public static function relocation(url: String, target: String = "_self"): void
+		{
+			navigateToURL(new URLRequest(url), target);
+		}
+		
+		/*********************************************************************************************************************
+		 * 
+		 */
+		public static function getLoaderInfo(url: String, fn: Function): Loader
+		{
+			var r: Loader = new Loader();
+			r.contentLoaderInfo.addEventListener(Event.COMPLETE, function (e: Event): void {
+				fn(e.currentTarget);
+			});
+			r.load(new URLRequest(url));
+			return r;
+		}
+		
+		/*********************************************************************************************************************
+		 * 
+		 */
+		public static function getMovie(surl: String, fn: Function): Loader
+		{
+			return getLoaderInfo(surl, function (info: LoaderInfo): void {
+				fn(info.content is MovieClip ? info.content : null);
+			});
+		}
+		
+		/*********************************************************************************************************************
+		 * 
+		 */
+		public static function getBitmap(surl: String, fn: Function): Loader
+		{
+			return getLoaderInfo(surl, function (info: LoaderInfo): void {
+				fn(info.content is Bitmap ? info.content : null);
+			});
+		}
+		
+		/*********************************************************************************************************************
+		 * 
+		 */
+		public static function getBitmapData(surl: String, fn: Function): Loader
+		{
+			var ld: Loader = getBitmap(surl, function (d: Bitmap): void {
+				var bd: BitmapData = new BitmapData(ld.width, ld.height, true, 0);
+				bd.draw(ld);
+				fn(bd);
+			});
+			return ld;
+		}
+		
+		/**
+		 * 获取一个图形对象(Bitmap)
+		 */
+		public static function getImage(url: String, callback: Function): void
+		{
+			var fontLoader : URLLoader = new URLLoader();
+			fontLoader.dataFormat = URLLoaderDataFormat.BINARY;
+			
+			var request : URLRequest = new URLRequest(url);
+			request.method = URLRequestMethod.GET;
+			
+			fontLoader.load(request);
+			fontLoader.addEventListener(Event.COMPLETE, function (e: Event) : void {
+				var l : Loader = new Loader();
+				l.loadBytes(e.currentTarget.data);
+				l.contentLoaderInfo.addEventListener(Event.COMPLETE, function (e: Event) : void {
+					callback(e.target.content as Bitmap);
+				});
+			});
+		}
+		
+		/**
+		 * 获取一个视频对象(Video)
+		 */
+		public static function getMov(url: String, callback: Function): void
+		{
+			var flvNetStr: NetStream;
+			var flvNetCon: NetConnection;
+			var flvObject: Object = new Object();
+			var onStatus: Function = function (e: NetStatusEvent): void {
+				if (e.info.code == "NetStream.Buffer.Full") {
+					var flvVideo: Video;
+					flvVideo = new Video(310,310);
+					flvVideo.width = flvVideo.videoWidth;
+					flvVideo.height = flvVideo.videoHeight;
+					flvVideo.attachNetStream(flvNetStr);
+					if (flvVideo.videoWidth > 0 && flvVideo.width != flvVideo.videoWidth) {
+						flvVideo.width = flvVideo.videoWidth;
+						flvVideo.height = flvVideo.videoHeight;
+					}
+					flvNetStr.pause();
+					callback(flvVideo, flvNetStr);
+					flvNetStr.removeEventListener(NetStatusEvent.NET_STATUS, onStatus);
+				}
+			};
+			flvNetCon = new NetConnection();
+			flvNetCon.connect(null);
+			flvNetStr = new NetStream(flvNetCon);
+			flvNetStr.addEventListener(IOErrorEvent.IO_ERROR, function(e: IOErrorEvent): void {
+			});
+			flvNetStr.addEventListener(NetStatusEvent.NET_STATUS, onStatus);
+			flvNetStr.client = flvObject;
+			flvNetStr.play(url);
+		}
+
+	}
+}

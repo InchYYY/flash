@@ -1,0 +1,560 @@
+﻿package nl.bron
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.MovieClip;
+	import flash.display.DisplayObjectContainer;
+	import flash.events.Event;
+	
+	import nl.service.WebServer;
+	import nl.util.json.JSON;
+
+	dynamic public class brContainer extends MovieClip
+	{
+		public static const STATUS_UNKNOWN:String            = 'StatusUnknown';
+		public static const STATUS_WAITING_FOR_INIT:String   = 'StatusWaitingForInit';
+		public static const STATUS_INITIALIZED:String        = 'StatusInitialized';
+		public static const STATUS_PLAYING:String            = 'StatusPlaying';
+		public static const STATUS_PAUSED:String             = 'StatusPaused';
+		public static const STATUS_ENDED:String              = 'StatusEnded';
+		public static const STATUS_WAITING_FOR_REPLAY:String = 'StatusWaitingForReplay';
+		
+		public static const CLIP_VERSION : String = '20131112T1354';
+		public static const MAX_CELL_ID: int = 200;	// 最大 cell ID
+
+		private var _self : brContainer;
+		private var _testMode: Boolean;
+		private var _cells: Array = new Array();		// array of HostCell object
+		private var _sites: Array = new Array();		// array of HostSite object
+		private var _innerParsed: Boolean = false;	// 内部参数剖析（提取）标志
+		private var _shared: Array;
+
+		private var m_iNrHeads : int;
+		private var m_sStatus : String;
+		private var m_iCurrentFrame:int;
+		
+		public function get isTestMode(): Boolean { return _testMode; }
+		public function get cells(): Array { return _cells; }
+		public function get sites(): Array { return _sites; }
+		public function get isReady(): Boolean
+		{
+			for each (var p: HostCell in _cells) {
+				if (p && !p.isReady) return false;
+			}
+			return true;
+		}
+		public function get isResReady(): Boolean
+		{
+			for each (var p: HostCell in _cells) {
+				if (p && !p.isResReady) return false;
+			}
+			return true;
+		}
+
+	    public function brContainer(p_bTestMode: Boolean): void
+	    {
+			_self = this;
+			try {
+				m_iNrHeads = 0;
+				m_iCurrentFrame = 0;
+
+				super();	// make sure super is called last
+				addEventListener(Event.ENTER_FRAME, onEnterFrame);
+				addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+				status = STATUS_UNKNOWN;
+				_testMode = p_bTestMode;
+				if (p_bTestMode) {
+					WebServer.setTestMode();
+				} else {
+					stop();
+				}
+				getMvParam();
+			} catch (e:Error) {
+				//
+			}
+	    }
+		
+	/*	public function setHead(p_iIndex : uint, oBitmap : Bitmap, p_aMarkers : Array) : void
+		{
+			try
+			{
+				var oHead : brCell = findCell(p_iIndex);
+				if (oHead != null)
+				{
+					oHead.shadow = oBitmap;
+					//oHead.createMouth(p_aMarkers);
+				}
+				else {}
+			}
+			catch (e:Error)
+			{
+				// if the head cannot be instantiated, we ignore it
+			}
+		}
+		
+		public function setDefaultHead(p_iIndex : uint, p_sClass : String, p_aMarkers : Array) : void
+		{
+			var oBitmap : Bitmap;
+			try
+			{
+				if (this.loaderInfo.applicationDomain.hasDefinition(p_sClass))
+				{
+					var oHeadClass : Class = this.loaderInfo.applicationDomain.getDefinition(p_sClass) as Class;
+					var oImage : BitmapData = new oHeadClass();
+					setHead(p_iIndex, new Bitmap(oImage), p_aMarkers);
+				}
+				else
+				{
+				}
+			} catch (e:Error) {
+				// if the head cannot be instantiated, we ignore it
+			}
+		}
+		
+		public function addOverlayEvent(p_iIndex:uint, p_iStartFrame:uint, p_iDuration:uint, p_iType:uint, p_oData:Object):void {
+			if (null != m_oEventTrigger)
+			{
+				m_oEventTrigger.addEvent(p_iIndex, p_iStartFrame, p_iDuration, p_iType, p_oData);
+			}
+			// set listener to intended overlay
+			var oOverlay : Overlay = findCell(p_iIndex);
+			if (null != oOverlay)
+			{
+				oOverlay.addEventType(p_iType, m_oEventTrigger);
+			}
+		} */
+		
+		public function set status(p_sStatus:String):void
+		{
+			if (m_sStatus != p_sStatus) {
+				m_sStatus = p_sStatus;
+				// status has changed, dispatch event
+				dispatchEvent(new Event(m_sStatus, true, false));
+				//m_sOldStatus = m_sStatus;
+				switch (m_sStatus) {
+					case STATUS_ENDED :
+						m_iCurrentFrame = 1;
+						status = STATUS_WAITING_FOR_REPLAY;
+					break;
+					case STATUS_UNKNOWN :
+					case STATUS_WAITING_FOR_INIT :
+					case STATUS_INITIALIZED :
+					case STATUS_PLAYING :
+					case STATUS_PAUSED :
+					case STATUS_WAITING_FOR_REPLAY :
+					default :
+						// do nothing
+					break;
+				}
+			}
+		}
+		
+		public function get status():String
+		{
+			return m_sStatus;
+		}
+
+		/**
+		 * override public function play():void { Debug.traceInfo('ClipContainer', 'play');
+		 * throw new Error('use start() to start the clip'); super.play(); } override
+		 * public function stop():void { Debug.traceInfo('ClipContainer', 'stop'); throw
+		 * new Error('use end() or pause() to stop the clip'); super.stop(); }
+		 */
+		public function start():void
+		{
+			if (status != STATUS_PLAYING)
+			{
+				if (status == STATUS_WAITING_FOR_REPLAY)
+				{
+					// restart movie
+					showCells();
+					resume();
+				}
+				else if (status == STATUS_INITIALIZED)
+				{
+					status = STATUS_PLAYING;
+					super.play();
+				}
+				else {}
+			}
+		}
+		
+		/**
+		 * after the clip has ended, call end to hide all heads
+		 */
+		public function end():void
+		{
+			stop();
+			for each (var cell : HostCell in _cells) {
+				if (cell && cell.actCell) cell.actCell.visible = false;
+			}
+			status = STATUS_ENDED;
+		}
+		
+		public function pause():void
+		{
+			m_iCurrentFrame = currentFrame;
+			stop();
+			status = STATUS_PAUSED;
+		}
+		
+		/**
+		 * resume playing after pause
+		 */
+		public function resume():void
+		{
+			gotoAndPlay(m_iCurrentFrame);
+			//dispatchEvent(new Event(STATUS_PLAYING, true, false));
+			status = STATUS_PLAYING;
+		}
+		
+		// show invisible heads just before playing
+		private function showCells() : void
+		{
+			for each (var cell: HostCell in _cells) {
+				if (cell && cell.actCell) cell.actCell.visible = true;
+			}
+		}
+		
+		private function onAddedToStage(p_oEvent:Event):void
+		{
+			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			status = STATUS_WAITING_FOR_INIT;
+		}
+		
+		private function onEnterFrame(p_oEvent : Event):void
+		{
+			//if (headChange && false)
+			//{
+			//	for each (var cell: HostCell in _cells) {
+			//		if (cell && cell.actCell) {
+			//			var m: MovieClip = cell.parent as MovieClip;
+			//			if (m) {
+			//				if (m.numChildren == 2) { m.removeChildAt(1); }
+			//				//m.alpha ;
+			//				//for (var j : int = m.numChildren - 1; j >= 0; j --)
+			//				//{
+			//				//	m.getChildAt(j).visible = false;
+			//				//}
+			//				//m.addChild(oHead);
+			//				//m.visible = false;
+			//				//if (m.parent) { m.parent.removeChild(m); }
+			//				//oHead.alpha = .5;
+			//			}
+			//			//if (m) { trace(m_aCells[0].parent.numChildren); }
+			//		}
+			//	}
+			//	headChange = false;
+			//}
+
+			switch (status)
+			{
+				case STATUS_WAITING_FOR_INIT :
+					if (m_iNrHeads == _cells.length - 1) {
+						showCells();
+						// heads have been initialized, send event
+						status = STATUS_INITIALIZED;
+					}
+					break;
+
+				case STATUS_PLAYING :
+					if (currentFrame >= totalFrames) {
+						end();
+					}
+					break;
+
+				case STATUS_UNKNOWN :
+				case STATUS_INITIALIZED :
+				case STATUS_PAUSED :
+				case STATUS_ENDED :
+				case STATUS_WAITING_FOR_REPLAY :
+				default :
+					// do nothing
+				break;
+			}
+			// let OverlayEventTrigger handle the frame
+		//	m_oEventTrigger.handleFrame(currentFrame);
+		//	if (self.currentLabel == sayState) { return; }
+		//	sayState = self.currentLabel;
+		//	if (sayState.slice(0, 3) == "SAY")
+		//	{
+		//		for each (var p : String in sayState.replace("SAY", "").split("|"))
+		//		{
+		//			var ps : Array = p.split(",");
+		//			var h : brCell = brCell(m_aCells[ps[0]]);
+		//			//if (h != null) { h.say(ps[1], ps[2], ps[3]); }
+		//		}
+		//	};
+		}
+		
+	/*    public function getNrHeads(): int
+	    {
+			return m_iNrHeads;
+	    } */
+		
+	/*	public function setCell(p_iIndex: int, prm: String): void
+		{
+			var p: Object = nl.comm.json.JSON.decode(prm);
+			var o: brCell;
+
+			if (p.text != undefined) {
+				o = new brTxtCell();
+				p.title = "文字";
+			}
+			else if (p.zoom != undefined) {
+				o = new brPicCell();
+				p.title = (p.default == "logo") ? "LOGO" : "图片";
+			}
+			else {
+				o = new brHead();
+				p.title = "头像";
+			}
+
+			//o.parameter = prm;
+			o.updateParameter(p);
+			o.ID = p_iIndex;
+			o.visible = false;
+			addCell(p_iIndex, o);
+			o.draw(this);
+
+			if (testMode) { trace("created cell id : ", p_iIndex);}
+		} */
+
+	/*	public function get eventTrigger(): OverlayEventTrigger
+		{
+			return m_oEventTrigger;
+		}
+
+		public function set eventTrigger(p_oTrigger:OverlayEventTrigger): void
+		{
+			m_oEventTrigger = p_oTrigger;
+		} */
+		
+		/**
+		 * 载入打包入<b>swf文件</b>中的“<b>AS链接</b>”图片
+		 */
+		public function loadDefaultImage(asLink: String): BitmapData
+		{
+			if (!asLink) return null;
+			if (!this.loaderInfo) return null;
+			if (!this.loaderInfo.applicationDomain.hasDefinition(asLink)) return null;
+			
+			var klass: Class = this.loaderInfo.applicationDomain.getDefinition(asLink) as Class;
+			if (!klass) return null;
+			
+			var bmpDat: BitmapData = new klass() as BitmapData;
+			return bmpDat;
+		}
+		
+		/**
+		 * 遍历所有 cell 并执行 exec 函数<br>
+		 * exec 原型: <b>function(cell: HostCell): void {}</b>
+		 */
+		public function forEachCell(exec: Function): void
+		{
+			for each (var p: HostCell in _cells) {
+				if (p) exec(p);
+			}
+		}
+		
+		/**
+		 * 遍历所有 site 并执行 exec 函数<br>
+		 * exec 原型: <b>function(site: HostSite): void {}</b>
+		 */
+		public function forEachSite(exec: Function): void
+		{
+			for each (var p: HostSite in _sites) {
+				if (p) exec(p);
+			}
+		}
+
+	/*	public function findCell(id: int): HostCell
+		{
+			if (id < 0) {
+				throw new Error("Cell ID is out of bounds: id=" + id);
+			}
+			var hc: HostCell = _cells[id] as HostCell;
+			return hc;
+		}
+		
+		public function findCell(id: int): brCell
+		{
+			return _cells[id] ? brCell(_cells[id]) : null;
+		} */
+		
+		private function getMvParam(): void
+		{
+			if (!this.parent) {
+				throw new Error("MovieClip parent is null");
+			}
+			
+			var p: Object = this.parent;
+			if (p["getParam"]) {
+				var func: * = p["getParam"];	// 从brContainer的parent取得..
+				if (func != null && typeof(func) == "function") {
+					p = func();
+					if (p) {
+					//	var sites: Array = p["sites"] as Array;
+					//	if (sites) {
+					//		HostSite.createAllSites(container, sites);
+					//		ok = true;
+					//	}
+						setSharedCells(p["shared"] as Array);
+					}
+				}
+			}
+			_innerParsed = true;
+		}
+				
+	/*	"shared":[
+			{"cells":[1,2]},
+			{"cells":[3,6,20]}
+		] */
+		public function setSharedCells(shared: Array): void
+		{
+			if (!shared) return;
+			
+			_shared = new Array();
+			for each (var share: Object in shared) {
+				var cells: Array = share.cells as Array;
+				for each (var id: int in cells) {
+					if (_shared[id]) {
+						throw new Error("Shared-cell is duplicated: cell_" + id);
+					} else {
+						_shared[id] = cells;	// 凡有共享资源的cell，记住共享id数组，用于搜索定位
+					}
+				}
+			}
+		}
+
+		private function locateResource(id: int): Object
+		{
+			if (!_shared || !_shared[id]) return null;
+			
+			var cells: Array = _shared[id] as Array;
+			var found: Boolean = false;
+			var res: Resource = null;
+			
+			for each (var i: int in cells) {
+				if (!res) {
+					var hc: HostCell = _cells[i] as HostCell;
+					if (hc) res = hc.resource;
+				}
+				if (!found) found = (i == id);
+				if (found && res) break;
+			}
+
+			return { resource: res, isFound: found };
+		}
+
+		public function setCell(id: int, paramStr: String): void
+		{
+			if (id < 0 || id > MAX_CELL_ID) {
+				throw new Error("Cell ID is out of bounds: id=" + id + " frame=" + currentFrame);
+			}
+
+			if (_cells[id]) {
+				throw new Error("Cell object is duplicated: cell_" + id);
+			}
+			
+		//	if (!_innerParsed) {
+		//		getMvParam();
+		//	}
+
+			var ptype: String;		// parm type
+			var ctype: int = 0;		// hostcell type
+			var rtype: int;			// res type
+			var title: String;
+			var parm: Object = nl.util.json.JSON.decode(paramStr);
+			//-----------------------------------------------------------------------------------------------------------------
+			if (!parm) {
+				throw new Error("Cell parameter parse error: cell_" + id + ", parameter=" + paramStr);
+			}
+
+			if (parm.type) {
+				ptype = parm.type;
+			} else {
+				if (parm.text != undefined) { ptype = "TEXT"; }
+				else if (parm.zoom != undefined) { ptype = (parm.default == "logo") ? "LOGO" : "PIC"; }
+				else { ptype = "HEAD"; }
+			}
+
+			switch (ptype) {
+				case "TEXT": ctype = HostCell.TYPE_TEXT;  rtype = Resource.RES_TEXT;  title = "文字";   break;
+				case "PIC":  ctype = HostCell.TYPE_PICT;  rtype = Resource.RES_PICT;  title = "图片";   break;
+				case "LOGO": ctype = HostCell.TYPE_PICT;  rtype = Resource.RES_PICT;  title = "LOGO";  break;
+				case "BG":   ctype = HostCell.TYPE_PICT;  rtype = Resource.RES_PICT;  title = "背景";   break;
+				case "HEAD": ctype = HostCell.TYPE_HEAD;  rtype = Resource.RES_PICT;  title = "头像";   break;
+				default: throw new Error("Cell type error: cell_" + id + ", type=" + ptype + "（ERROR! OK: TEXT, PIC, LOGO, BG, HEAD）");
+			}
+			//-----------------------------------------------------------------------------------------------------------------
+			var ret: Object = locateResource(id);
+			var resource: Resource = ret ? Resource(ret.resource) : null;
+			var isMono: Boolean = ret ? !Boolean(ret.isFound) : true;
+			
+			if (!resource) {
+				var hidden: Boolean = (parm.hidden ? true : false);
+				var bmpDat: BitmapData = loadDefaultImage(parm["default"]);
+				resource = new Resource(rtype, hidden, parm, bmpDat);
+			}
+
+			var hc: HostCell = new HostCell(id, ctype, ptype, title, resource, this);
+			_cells[id] = hc;
+			resource.addCell(hc, isMono);	// 设置cell, 并载入默认资源（图片、文字）
+		}
+		
+		/**
+		 * 将 flash 自动生成的 brCell 实例对象注册到宿主对象（HostCell）中，
+		 * 注意 brCell 对象的命名是：cell_0, cell_1 ..（即“cell_”后跟数字，数字按顺序排列，且不能重复）
+		 */
+		public function regCell(id: int, cell: brCell): HostCell
+		{
+			if (id < 0 || id > MAX_CELL_ID) {
+				throw new Error("Cell ID is out of bounds: id=" + id + " frame=" + currentFrame);
+			}
+			
+			if (!_cells[id]) {
+				throw new Error("HostCell object is null: cell_" + id + " frame=" + currentFrame);
+			}
+			
+			var hc: HostCell = _cells[id] as HostCell;
+			hc.actCell = cell;
+			if (!contains(cell)) addChild(cell);
+			if (hc.actor && !cell.contains(hc.actor)) cell.addChild(hc.actor);
+			
+			return hc;
+		}
+		
+		/**
+		 * called from the constructor of the heads (which are instantiated by flash)
+		 * NOTE the heads must be named 'head_x' where x is the id of the head
+		 * @param uint id The index of the current to add
+		 * @param Head cell The Head object
+		 */
+	/*	public function addCell(id: uint, cell: brCell) : void
+		{
+			if ((m_aCells[id] == undefined) || (m_aCells[id] == null))
+			{
+				m_aCells[id] = cell;
+				m_iNrHeads ++;
+			}
+			else
+			{
+		//		if (m_aCells[id].drawing) {
+		//			//m_aCells[id].addEventListener("BRCELL_DRAWED", function (e : Event) : void { cell.clone(e.currentTarget as brCell); });
+		//			ResUtil.once(m_aCells[id], "BRCELL_DRAWED", function (e: Event): void {
+		//				cell.clone(e.currentTarget as brCell);
+		//			});
+		//		}
+		//		cell.clone(m_aCells[id] as brCell);
+				cell.visible = true;
+				if (! contains(cell)) { addChild(cell); }
+				m_aCells[id] = cell;
+			}
+			currHeadIndex = id;
+			_self.dispatchEvent(new Event("CLIPCONTAINER_ADDHEAD"));
+			headChange = true;
+		} */
+	}
+
+}

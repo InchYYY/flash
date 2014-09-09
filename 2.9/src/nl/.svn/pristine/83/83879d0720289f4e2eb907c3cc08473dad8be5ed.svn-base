@@ -1,0 +1,204 @@
+package nl.bron
+{
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.net.NetStream;
+	
+	import nl.util.Obj;
+
+	public class HostCell extends EventDispatcher
+	{
+		public static const EVENT_ON_DRAW: String = "EVENT_ON_DRAW";
+		public static const EVENT_ON_INIT: String = "EVENT_ON_INIT";
+
+		public static const TYPE_TEXT: int = 1;
+		public static const TYPE_PICT: int = 2;
+		public static const TYPE_HEAD: int = 3;
+		public static const TYPE_MOV:  int = 4;
+
+		public static const STEP_CREATE:	int = 1;	// 创建完成
+		public static const STEP_PARAM:	int = 2;	// 完成设置用户参数
+		public static const STEP_LOADING:	int = 3;	// 正从网络服务器载入资源
+		public static const STEP_DRAWED:	int = 4;	// 角色已画
+
+		public static const DRAW_NONE: int = 3;
+		public static const DRAWING: int = 3;
+		public static const DRAWED: int = 3;
+		
+		
+		private var _ID: int = 0;
+		private var _type: int;
+		private var _ptype: String;
+		private var _title: String;
+		private var _resource: Resource;
+		private var _actCell: brCell = null;
+		private var _actor: DisplayObject = null;
+		private var _defaultImage: Bitmap = null;
+		private var _mov: NetStream;
+		
+		private var _isInited: Boolean = false;
+		private var _paramChanged: Boolean = false;
+		private var _container: brContainer;
+		
+		private var _tempData: Object = new Object();		// 存放一些运行过程的数据、对象
+		private var _site: HostSite = null;
+		private var _waitResReady: int = 0;
+		
+		public function get ID(): int { return _ID; }
+		public function get type(): int { return _type; }
+		public function get ptype(): String { return _ptype; }
+		public function get title(): String { return _title; }
+		public function get param(): Object { return _resource.param; }
+		public function get resource(): Resource { return _resource; }
+		public function get isHidden(): Boolean { return _resource.isHidden; }
+		public function set isHidden(p: Boolean): void { _resource.isHidden = p; if (_actor) _actor.visible = !p; }
+		public function get isMaskHidden(): Boolean { return _resource.isMaskHidden; }
+		public function set isMaskHidden(p: Boolean): void
+		{
+			_resource.isMaskHidden = p;
+			/*if (_actCell) {
+				if (_actCell is brPicCell) {
+					(_actCell as brPicCell).setMask(p);
+				} else if (_actCell is brMovCell) {
+					(_actCell as brMovCell).setMask(p);
+				}
+			}*/
+		}
+		public function get isReady(): Boolean { return (_actCell && _actor && _resource.isReady); }
+
+
+		public function get parent(): DisplayObjectContainer { return _actCell ? _actCell.parent : null; }
+		public function get actCell(): brCell { return _actCell; }
+		public function get actor(): DisplayObject { return _actor; }
+		public function get site(): HostSite { return _site; }
+		public function get tempData(): Object { return _tempData; }
+		public function get mov(): NetStream { return _mov; }
+
+		public function HostCell(id: int, type: int, ptype: String, title: String, resource: Resource, container: brContainer)
+		{
+			super();
+			_ID = id;
+			_type = type;
+			_ptype = ptype;
+			_title = title;
+			_resource = resource;
+			_container = container;
+		}
+
+		public function set site(p: HostSite): void { _site = p; }
+		public function set actCell(p: brCell): void { _actCell = p; }
+		public function set actor(p: DisplayObject): void
+		{
+			if (_actor && _actCell) {
+				if (_actCell.contains(_actor)) {
+					_actCell.removeChild(_actor);
+				}
+			}
+
+			_actor = p;
+			if (p) {
+				if (_actCell && !_actCell.contains(p)) {
+					_actCell.addChild(p);
+				}
+				if (isHidden) {
+					p.visible = false;
+				}
+			}
+
+			_paramChanged = false;
+		}
+		public function set mov(s: NetStream): void { _mov = s; }
+
+		public function drawBitmapData(dat: BitmapData): void
+		{
+			var bmp: Bitmap = new Bitmap(dat);
+			bmp.smoothing = true;
+			drawBitmap(bmp);
+		}
+		
+		public function drawBitmap(bmp: Bitmap): void
+		{
+			if (bmp) {
+				bmp.smoothing = true;
+				actor = bmp;
+			} else {
+				// TODO: set error image?
+			}
+			setState();
+			emitEvent(EVENT_ON_DRAW);
+		}
+		
+		public function drawMov(): void
+		{
+			setState();
+			G.deBug("EVENT_ON_DRAW","EVENT_ON_DRAW");
+
+			emitEvent(EVENT_ON_DRAW);
+		}
+
+		public function updateParam(p: Object): void
+		{
+		//	G.dbg("cell_" + _ID);
+			if (_resource.firstCell != this) return;
+			
+			if (p) {
+		//		G.dbg("==0==" + Obj.toString(param));
+				Obj.copy(p, param);
+		//		G.dbg("==1==" + Obj.toString(param));
+			} else {
+		//		G.dbg(Obj.toString(param));
+			}
+			_resource.loadResource();
+		}
+
+		/**
+		 * 当 isReady 时执行一次（如果当前 isReady 则立即执行并返回，不然等 isReady 后执行一次）<br>
+		 * exec原型: function(): void {}
+		 */
+		public function runOnceReady(exec: Function): void
+		{
+			if (isReady) { exec(); return; }
+			
+			var func: Function = function (e: Event): void {
+				removeEventListener(EVENT_ON_DRAW, func);
+				exec();
+			};
+			addEventListener(EVENT_ON_DRAW, func);
+		}
+		
+		/**
+		 * 每次 isReady 都执行（如果当前 isReady 则先执行一次）<br>
+		 * exec原型: function(): void {}
+		 */
+		public function runEverReady(exec: Function): void
+		{
+			if (isReady) exec();
+
+			var func: Function = function (e: Event): void { exec(); };
+			addEventListener(EVENT_ON_DRAW, func);
+		}
+
+		public function setState(): void
+		{
+			if (!param) throw new Error("_param is null");
+		//	if (!_paramChanged) return;
+			switch (_type) {
+				case TYPE_TEXT: brTxtCell.updateState(this);  break;
+				case TYPE_PICT: brPicCell.updateState(this);  break;
+				case TYPE_MOV: brMovCell.updateState(this);  break;//todo movCell
+				case TYPE_HEAD: break;
+			}
+			//if (_actCell) _actCell.setState();
+			_paramChanged = false;
+		}
+
+		private function emitEvent(eventType: String): void
+		{
+			dispatchEvent(new Event(eventType));
+		}
+	}
+}

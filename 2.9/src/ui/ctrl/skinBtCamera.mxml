@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:l="*" initialize="init()">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			private function init(): void
+			{
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	<s:Rect width="28" height="28" radiusX="28" radiusY="28">
+		<s:fill>
+			<s:BitmapFill fillMode="clip" source="@Embed('/pic/camerBt.png')" x="0" y="-1" />
+		</s:fill>
+	</s:Rect>
+</s:Skin>

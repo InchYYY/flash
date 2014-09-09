@@ -1,0 +1,15 @@
+package module
+{
+	import flash.display.Sprite;
+	
+	import inch.boFangT;
+	
+	public class DongHua extends Sprite
+	{
+		private var _ui:boFangT;
+		public function DongHua()
+		{
+			super();
+		}
+	}
+}

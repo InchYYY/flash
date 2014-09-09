@@ -1,0 +1,4 @@
+#Mon Aug 18 15:49:11 CST 2014
+eclipse.preferences.version=1
+com.adobe.flash.profiler.Excludes=,flash.*.*,mx.*.*,spark.*.*,
+com.adobe.flash.profiler.Includes=,

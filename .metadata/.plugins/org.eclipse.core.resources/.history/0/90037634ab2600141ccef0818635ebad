@@ -1,0 +1,9 @@
+package module
+{
+	public class test
+	{
+		public function test()
+		{
+		}
+	}
+}
