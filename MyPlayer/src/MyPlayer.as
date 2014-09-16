@@ -11,21 +11,21 @@ package
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
 	import flash.system.Security;
-
+	
+	import SoundManager.SoundTotalManager;
+	
 	import debug.Debug;
-
+	
 	import inch.ZhuViewUIAsset;
-
+	
 	import module.DongHua;
-
-	import tool.API;
 
 
 	/**
 	 * @动画替换播放器
 	 * @author inch
 	 */
-	[SWF(width="640", height="360", frameRate="25", backgroundColor="0x000123", heightPercent="100%", widthPercent="100%")]
+	[SWF(width="640", height="360", frameRate="25", backgroundColor="0xffffff", heightPercent="100%", widthPercent="100%")]
 	public class MyPlayer extends Sprite
 	{
 		/**
@@ -58,11 +58,15 @@ package
 
 			Debug.init(this, true, false);
 
-			_view=new ZhuViewUIAsset();
-			_view.y=(API.instance().thisHight - _view.height) / 2;
-			this.addChild(_view);
-			_view.btn_play.addEventListener(MouseEvent.CLICK, onClickPlay);
-			_view.btn_tips.addEventListener(MouseEvent.CLICK, onTipsChange);
+//			_view=new ZhuViewUIAsset();
+//			_view.y=(API.instance().thisHight - _view.height) / 2;
+//			this.addChild(_view);
+//			_view.btn_play.addEventListener(MouseEvent.CLICK, onClickPlay);
+//			_view.btn_tips.addEventListener(MouseEvent.CLICK, onTipsChange);
+			
+			
+			
+			this.addChild(SoundTotalManager.instance);
 		}
 
 		protected function _loaderErrorHandler(event:IOErrorEvent):void

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="将资源“MyPlayer/src/李翊君 - 永远永远.mp3”重命名为“test.mp3”" description="重命名资源“李翊君 - 永远永远.mp3”" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/李翊君 - 永远永远.mp3" name="test.mp3" stamp="1410840697689" updateReferences="true"/>
+</session>

@@ -1,0 +1,79 @@
+package SoundManager
+{
+	import flash.display.SimpleButton;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.media.Sound;
+	import flash.media.SoundChannel;
+	import flash.media.SoundTransform;
+	import flash.net.URLRequest;
+
+	/**
+	 *
+	 * @author inch
+	 */
+	public class SoundTotalManager
+	{
+		/**
+		 *
+		 */
+		public var btnPlay:SimpleButton;
+		public var btnPause:SimpleButton;
+		public var btnStop:SimpleButton;
+		public var btnQuick:SimpleButton;
+		public var btnVocUp:SimpleButton;
+		public var btnVocDown:SimpleButton;
+		public var btnPanUp:SimpleButton;
+		public var btnPanDown:SimpleButton;
+
+		private var testSound:Sound;
+		private var testChannel:SoundChannel;
+		private var testTrans:SoundTransform;
+		private var testPosition:Number=0;
+
+		public function SoundTotalManager()
+		{
+			testSound=new Sound();
+			testChannel=new SoundChannel();
+			testTrans=new SoundTransform();
+
+			testSound.load(new URLRequest("test.mp3"));
+			testSound.addEventListener(Event.COMPLETE, soundLoadOver);
+		}
+
+		private function soundLoadOver(e:Event):void
+		{
+			testSound.removeEventListener(Event.COMPLETE, soundLoadOver);
+			soudLoad=true;
+		}
+
+		private function playBtnEvent():void
+		{
+			btnPlay.addEventListener(MouseEvent.CLICK, soundPlay);
+		}
+
+		private function soundPlay(e:MouseEvent):void
+		{
+			if (isSoundPlay)
+			{
+				return;
+			}
+			isSoundPlay=true;
+
+			testChannel=testSound.play(testPosition);
+		}
+		private function pauseBtnEvent():void
+		{
+			btnPause.addEventListener(MouseEvent.CLICK, soudPause);
+		}
+		
+		private function soudPause(e:MouseEvent):void
+		{
+			if (!isSoundPlay) return;
+			isSoundPlay = false;
+			
+			testPosition = testChannel.position;
+			testChannel.stop();
+		}
+	}
+}
