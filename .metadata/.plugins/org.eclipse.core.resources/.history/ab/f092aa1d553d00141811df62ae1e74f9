@@ -1,9 +1,0 @@
-package SoundManager
-{
-	public class SoundTotalManager
-	{
-		public function SoundTotalManager()
-		{
-		}
-	}
-}

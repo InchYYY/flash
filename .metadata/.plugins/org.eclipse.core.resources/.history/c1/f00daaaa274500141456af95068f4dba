@@ -1,0 +1,125 @@
+package
+{
+	import flash.display.Loader;
+	import flash.display.Sprite;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.system.ApplicationDomain;
+	import flash.system.LoaderContext;
+	import flash.system.Security;
+
+	import SoundManager.SoundTotalManager;
+
+	import debug.Debug;
+
+	import inch.ZhuViewUIAsset;
+
+	import module.DongHua;
+
+
+	/**
+	 * @动画替换播放器
+	 * @author inch
+	 */
+	[SWF(width="640", height="360", frameRate="25", backgroundColor="0xffffff", heightPercent="100%", widthPercent="100%")]
+	public class MyPlayer extends Sprite
+	{
+		/**
+		 *
+		 */
+		private var _view:ZhuViewUIAsset;
+		private var _loader:Loader;
+
+		public function MyPlayer()
+		{
+			this.addEventListener(Event.ADDED_TO_STAGE, _addedToStageHandler);
+
+			Security.allowDomain("*");
+
+		}
+
+		protected function _addedToStageHandler(event:Event):void
+		{
+			// TODO Auto-generated method stub
+
+			stage.align=StageAlign.TOP_LEFT;
+			stage.scaleMode=StageScaleMode.NO_SCALE;
+			this.removeEventListener(Event.ADDED_TO_STAGE, _addedToStageHandler);
+
+			_loader=new Loader();
+			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, _loadedHandler);
+			_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, _loaderErrorHandler);
+			_loader.load(new URLRequest(""), new LoaderContext(false, ApplicationDomain.currentDomain, null)); // 跨域问题
+
+
+			Debug.init(this, true, false);
+
+//			_view=new ZhuViewUIAsset();
+//			_view.y=(API.instance().thisHight - _view.height) / 2;
+//			this.addChild(_view);
+//			_view.btn_play.addEventListener(MouseEvent.CLICK, onClickPlay);
+//			_view.btn_tips.addEventListener(MouseEvent.CLICK, onTipsChange);
+
+
+
+			this.addChild(SoundTotalManager.instance);
+		}
+
+		protected function _loaderErrorHandler(event:IOErrorEvent):void
+		{
+			// TODO Auto-generated method stub
+
+		}
+
+		protected function _loadedHandler(event:Event):void
+		{
+			// TODO Auto-generated method stub
+
+		}
+
+		protected function onTipsChange(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
+
+		}
+		private var arr:Array=[1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+
+		private function disorder(arr:Array):Array
+		{
+			var len:uint=arr.length;
+			var cache:*;
+				var ti:uint;
+			for (var i:uint=0; i < len; i++)
+			{
+				ti=int(Math.random() * len);
+				cache=arr[i];
+				arr[i]=arr[ti];
+				arr[ti]=cache;
+			}
+			while (--i >= 0)
+			{
+				ti=int(Math.random() * len);
+				cache=arr[i];
+				arr[i]=arr[ti];
+				arr[ti]=cache;
+			}
+			trace(arr);
+			return arr;
+		}
+
+		protected function onClickPlay(event:MouseEvent):void
+		{
+			// TODO Auto-generated method stub
+			trace("播放");
+
+			_view.visible=false;
+			this.addChild(DongHua.instance);
+
+			DongHua.instance.y=this.height - DongHua.instance.height;
+		}
+	}
+}

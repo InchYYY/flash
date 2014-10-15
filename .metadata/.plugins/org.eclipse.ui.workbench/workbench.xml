@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="39" version="2.0">
+<workbench progressCount="41" version="2.0">
 <workbenchAdvisor/>
-<window height="768" maximized="true" width="1024" x="26" y="26">
+<window height="768" maximized="true" minimized="true" width="1024" x="26" y="26">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
-<itemSize x="160"/>
+<itemSize x="406"/>
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="160" y="22"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="210" y="22"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="198" y="22"/>
 <coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="99" y="22"/>
@@ -19,6 +19,8 @@
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="190" y="22"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" itemType="typePlaceholder" x="-1" y="-1"/>
 <coolItem id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.ui.workbench.help" itemType="typeToolBarContribution" x="-1" y="-1"/>
@@ -31,120 +33,21 @@
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
 <part id="1"/>
-<part id="2"/>
-<part id="3"/>
-<part id="4"/>
-<part id="5"/>
-<part id="6"/>
-<part id="7"/>
-<part id="8"/>
-<part id="9"/>
-<part id="10"/>
-<part id="11"/>
-<part id="12"/>
-<part id="13"/>
-<part id="14"/>
-<part id="15"/>
-<part id="16"/>
-<part id="17"/>
-<part id="18"/>
-<part id="19"/>
-<part id="20"/>
-<part id="21"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MyPlayer.as" partName="MyPlayer.as" path="F:/MyDream/MyPlayer/src/MyPlayer.as" title="MyPlayer.as" tooltip="MyPlayer/src/MyPlayer.as" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MyPlayer.as" partName="MyPlayer.as" path="F:/MyDream/MyPlayer/src/MyPlayer.as" title="MyPlayer.as" tooltip="MyPlayer/src/MyPlayer.as" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/MyPlayer.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2156" selectionTopPixel="1298"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1715" selectionTopPixel="978"/>
 </editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="ArrayUtil.as" partName="ArrayUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/arrayUtils/ArrayUtil.as" title="ArrayUtil.as" tooltip="MyPlayer/src/UtilsTool/arrayUtils/ArrayUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/arrayUtils/ArrayUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="32" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Utils.as" partName="Utils.as" path="F:/MyDream/MyPlayer/src/UtilsTool/Utils.as" title="Utils.as" tooltip="MyPlayer/src/UtilsTool/Utils.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/Utils.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2311" selectionTopPixel="1170"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="ColorUtil.as" partName="ColorUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/colorUtils/ColorUtil.as" title="ColorUtil.as" tooltip="MyPlayer/src/UtilsTool/colorUtils/ColorUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/colorUtils/ColorUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="38" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MathUtil.as" partName="MathUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/mathUtils/MathUtil.as" title="MathUtil.as" tooltip="MyPlayer/src/UtilsTool/mathUtils/MathUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/mathUtils/MathUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="28" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="ObjectUtil.as" partName="ObjectUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/objectUtils/ObjectUtil.as" title="ObjectUtil.as" tooltip="MyPlayer/src/UtilsTool/objectUtils/ObjectUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/objectUtils/ObjectUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="189" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Reflection.as" partName="Reflection.as" path="F:/MyDream/MyPlayer/src/UtilsTool/reflection/Reflection.as" title="Reflection.as" tooltip="MyPlayer/src/UtilsTool/reflection/Reflection.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/reflection/Reflection.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="28" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="GUID.as" partName="GUID.as" path="F:/MyDream/MyPlayer/src/UtilsTool/stringUtils/GUID.as" title="GUID.as" tooltip="MyPlayer/src/UtilsTool/stringUtils/GUID.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/stringUtils/GUID.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="294" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="HanziToPinyin.as" partName="HanziToPinyin.as" path="F:/MyDream/MyPlayer/src/UtilsTool/stringUtils/HanziToPinyin.as" title="HanziToPinyin.as" tooltip="MyPlayer/src/UtilsTool/stringUtils/HanziToPinyin.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/stringUtils/HanziToPinyin.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="249" selectionTopPixel="240"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="StringUtil.as" partName="StringUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/stringUtils/StringUtil.as" title="StringUtil.as" tooltip="MyPlayer/src/UtilsTool/stringUtils/StringUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/stringUtils/StringUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="45" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="AfterDateHandler.as" partName="AfterDateHandler.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/AfterDateHandler.as" title="AfterDateHandler.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/AfterDateHandler.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/AfterDateHandler.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="27" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="AfterDateNoWeekend.as" partName="AfterDateNoWeekend.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/AfterDateNoWeekend.as" title="AfterDateNoWeekend.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/AfterDateNoWeekend.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/AfterDateNoWeekend.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="622" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="AmountDay.as" partName="AmountDay.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/AmountDay.as" title="AmountDay.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/AmountDay.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/AmountDay.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="258" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="TimeUtil.as" partName="TimeUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/TimeUtil.as" title="TimeUtil.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/TimeUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/TimeUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="168" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="TimerManager.as" partName="TimerManager.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/TimerManager.as" title="TimerManager.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/TimerManager.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/TimerManager.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="152" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="TianganDizhi.as" partName="TianganDizhi.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/TianganDizhi.as" title="TianganDizhi.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/TianganDizhi.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/TianganDizhi.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="37" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Jishiqi.as" partName="Jishiqi.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/Jishiqi.as" title="Jishiqi.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/Jishiqi.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/Jishiqi.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="135" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="DateAnimal.as" partName="DateAnimal.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/DateAnimal.as" title="DateAnimal.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/DateAnimal.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/DateAnimal.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="28" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Daojishi.as" partName="Daojishi.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/Daojishi.as" title="Daojishi.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/Daojishi.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/Daojishi.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="28" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="GreToLunarDate.as" partName="GreToLunarDate.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/GreToLunarDate.as" title="GreToLunarDate.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/GreToLunarDate.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/GreToLunarDate.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="53" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="BeforeDataHandler.as" partName="BeforeDataHandler.as" path="F:/MyDream/MyPlayer/src/UtilsTool/timeUtils/BeforeDataHandler.as" title="BeforeDataHandler.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/BeforeDataHandler.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/timeUtils/BeforeDataHandler.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="31" selectionTopPixel="0"/>
-</editor>
-<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="XMLUtil.as" partName="XMLUtil.as" path="F:/MyDream/MyPlayer/src/UtilsTool/xmlUtils/XMLUtil.as" title="XMLUtil.as" tooltip="MyPlayer/src/UtilsTool/xmlUtils/XMLUtil.as" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/UtilsTool/xmlUtils/XMLUtil.as"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1637" selectionTopPixel="110"/>
+<editor id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="API.as" partName="API.as" path="F:/MyDream/MyPlayer/src/tool/API.as" title="API.as" tooltip="MyPlayer/src/tool/API.as" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/MyPlayer/src/tool/API.as"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="513" selectionTopPixel="414"/>
 </editor>
 </editors>
 <views>
+<view id="org.eclipse.debug.ui.ExpressionView" partName="表达式"/>
 <view id="org.eclipse.search.ui.views.SearchView" partName="搜索">
 <viewState isPinned="false">
 <view IMemento.internal.id="" org.eclipse.search.lastActivation="0"/>
@@ -153,7 +56,7 @@
 <view id="org.eclipse.ui.views.ProblemView" partName="问题">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="问题">
 <expanded>
-<category IMemento.internal.id="警告（1 项）"/>
+<category IMemento.internal.id="错误（1 项）"/>
 </expanded>
 <columnWidths org.eclipse.ui.ide.locationField="90" org.eclipse.ui.ide.markerType="90" org.eclipse.ui.ide.pathField="120" org.eclipse.ui.ide.resourceField="90" org.eclipse.ui.ide.severityAndDescriptionField="300"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
@@ -163,29 +66,23 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
 </view>
+<view id="org.eclipse.debug.ui.DebugView" partName="调试">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.console.ConsoleView" partName="控制台">
 <viewState/>
 </view>
 <view id="com.adobe.flexbuilder.packageexplorer" partName="包资源管理器">
-<viewState LINK_NAVIGATOR_TO_EDITOR="0" fpeIsFlat="0" fpeSortBy="1" sorter="1">
+<viewState LINK_NAVIGATOR_TO_EDITOR="1" fpeIsFlat="0" fpeSortBy="1" sorter="1">
 <fpeExpanded>
 <fpeElement fpePath="/MyPlayer"/>
 <fpeElement fpePath="/MyPlayer/src"/>
-<fpeElement fpePath="/MyPlayer/src/module"/>
+<fpeElement fpePath="/MyPlayer/src/%typeDefaultPackage"/>
 <fpeElement fpePath="/MyPlayer/src/tool"/>
 <fpeElement fpePath="/MyPlayer/src/UtilsTool"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/arrayUtils"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/colorUtils"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/mathUtils"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/objectUtils"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/reflection"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/stringUtils"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/timeUtils"/>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/xmlUtils"/>
-<fpeElement fpePath="/MyPlayer/libs"/>
 </fpeExpanded>
 <fpeSelection>
-<fpeElement fpePath="/MyPlayer/src/UtilsTool/Utils.as"/>
+<fpeElement fpePath="/MyPlayer/src/MyPlayer.as"/>
 </fpeSelection>
 <filters>
 <filter element=".flexProperties" isEnabled="true"/>
@@ -209,12 +106,15 @@
 </filters>
 <expanded>
 <element path="/MyPlayer"/>
-<element path="/MyPlayer/libs"/>
 </expanded>
 <selection>
-<element path="/MyPlayer/src/UtilsTool/Utils.as"/>
+<element path="/MyPlayer/src/MyPlayer.as"/>
 </selection>
 </viewState>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="断点"/>
+<view id="org.eclipse.debug.ui.VariableView" partName="变量">
+<viewState/>
 </view>
 <view id="com.adobe.flexbuilder.monitors.network.view.NetworkMonitorView" partName="网络监视器">
 <viewState>
@@ -257,10 +157,10 @@
 <alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
 <alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.debug.ui.flexDebuggingActionSet"/>
-<alwaysOnActionSet id="com.adobe.flexbuilder.dcrad.actionSet"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.zzz.editors.common.ui.project.publish"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.exportimport.actionSet1"/>
 <alwaysOnActionSet id="com.adobe.flexbuilder.as.editor.ui.NavigationActions"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.dcrad.actionSet"/>
 <show_view_action id="com.adobe.flexbuilder.packageexplorer"/>
 <show_view_action id="org.eclipse.ui.views.ContentOutline"/>
 <show_view_action id="org.eclipse.ui.views.ProblemView"/>
@@ -299,10 +199,10 @@
 <fastViewBar fastViewLocation="1024" id="bottomLayout" orientation="256" selectedTabId="org.eclipse.ui.console.ConsoleView" style="0">
 <fastViews>
 <view id="org.eclipse.ui.console.ConsoleView" ratio="0.29977876"/>
-<view id="com.adobe.flexbuilder.as.editor.asdocviewer" ratio="0.29977876"/>
 <view id="org.eclipse.ui.views.ProblemView" ratio="0.29977876"/>
 <view id="com.adobe.flexbuilder.dcrad.views.DataServicesView" ratio="0.29977876"/>
 <view id="com.adobe.flexbuilder.monitors.network.view.NetworkMonitorView" ratio="0.29977876"/>
+<view id="com.adobe.flexbuilder.as.editor.asdocviewer" ratio="0.29977876"/>
 </fastViews>
 </fastViewBar>
 </fastViewBars>
@@ -351,185 +251,277 @@
 </mainWindow>
 </layout>
 </perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="com.adobe.flexbuilder.debug.ui.perspectives.FlexDebugPerspectiveFactory" id="com.adobe.flexbuilder.debug.ui.perspectives.debug" label="Flash 调试"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.flashbridge.flashproject.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.egit.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.context.ui.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.doc.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.mylyn.tasks.ui.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.wb.core.ui.actionset"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.profileActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.debug.ui.flexDebuggingActionSet"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.dcrad.actionSet"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.zzz.editors.common.ui.project.publish"/>
+<alwaysOnActionSet id="com.adobe.flexbuilder.exportimport.actionSet1"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="com.adobe.flexbuilder.packageexplorer"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<new_wizard_action id="com.adobe.flexbuilder.editorcore.ui.project.wizards.newproject"/>
+<new_wizard_action id="com.adobe.flexbuilder.project.ui.wizards.FlexLibraryProjectWizard"/>
+<new_wizard_action id="com.adobe.flashbuilder.project.multiplatform.ui.MultiPlatformProjectWizard"/>
+<new_wizard_action id="com.adobe.flexbuilder.project.ui.wizards.NewActionScriptProjectWizard"/>
+<new_wizard_action id="com.adobe.flexbuilder.project.ui.wizards.ActionScriptLibraryProjectWizard"/>
+<new_wizard_action id="com.adobe.flashbuilder.project.multiplatform.ui.MultiPlatformActionScriptProjectWizard"/>
+<new_wizard_action id="com.adobe.flexbuilder.flashbridge.NewFlashProProjectWizard"/>
+<new_wizard_action id="com.adobe.flexbuilder.mxml.editor.ui.wizards.NewMXMLApplication"/>
+<new_wizard_action id="com.adobe.flexbuilder.mxml.editor.ui.wizards.NewMXMLComponent"/>
+<new_wizard_action id="com.adobe.flexbuilder.mxml.editor.ui.wizards.NewMXMLItemRenderer"/>
+<new_wizard_action id="com.adobe.flexbuilder.mxml.editor.ui.wizards.NewMXMLModule"/>
+<new_wizard_action id="com.adobe.flexbuilder.mxml.editor.ui.wizards.NewMXMLSkin"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.wizards.NewActionScriptFile.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.classWizard.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.interfaceWizard.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.skinnableComponentWizard.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.workerWizard.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.css.editor.wizards.NewCSSFile"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.flexUnitClassWizard.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.flexUnitTestSuiteClassWizard.flex"/>
+<new_wizard_action id="com.adobe.flexbuilder.as.editor.packageWizard.flex"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<perspective_action id="com.adobe.flexbuilder.editors.mxml.ui.perspectives.development"/>
+<perspective_action id="com.adobe.flexbuilder.debug.ui.perspectives.debug"/>
+<perspective_action id="com.adobe.flash.profiler.ui.ProfilingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="com.adobe.flexbuilder.dcrad.views.DataServicesView"/>
+<view id="com.adobe.flexbuilder.monitors.network.view.NetworkMonitorView"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.debug.ui.ExpressionView"/>
+<fastViewBars/>
+<layout>&#x0A;<mainWindow>&#x0A;<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.DebugView" label="调试"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.75" ratioLeft="1254" ratioRight="418" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder appearance="2" expanded="2">&#x0A;<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.75" ratioLeft="678" ratioRight="226" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.ui.console.ConsoleView" label="控制台"/>
+<page content="com.adobe.flexbuilder.dcrad.views.DataServicesView" label="数据/服务"/>
+<page content="com.adobe.flexbuilder.monitors.network.view.NetworkMonitorView" label="网络监视器"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.32890856" ratioLeft="223" ratioRight="455" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="836" ratioRight="836" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">&#x0A;<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">&#x0A;<page content="org.eclipse.debug.ui.VariableView" label="变量"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="断点"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="表达式"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">&#x0A;<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
 </perspectives>
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/MyPlayer.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/module/DongHua.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/module/test.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/module/TestUploads.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/arrayUtils/ArrayUtil.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/Utils.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/colorUtils/ColorUtil.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/mathUtils/MathUtil.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/objectUtils/ObjectUtil.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/reflection/Reflection.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/stringUtils/GUID.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/stringUtils/HanziToPinyin.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/stringUtils/StringUtil.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/AfterDateHandler.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/AfterDateNoWeekend.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/AmountDay.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/TimeUtil.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/TimerManager.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/TianganDizhi.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/Jishiqi.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/DateAnimal.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/Daojishi.as"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/GreToLunarDate.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/timeUtils/BeforeDataHandler.as"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/UtilsTool/xmlUtils/XMLUtil.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/MyPlayer.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/SoundManager/SoundTotalManager.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" path="/TestFlv/src/TestFlv.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.mxml.editor.MXMLCodeEditor" path="/TestFlv/src/TestFlv.mxml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/TestFlv/src/EncodeToMp4.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/TestFlv/src/Net.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" path="/TestFlv/src/TestFlv-app.xml"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/MyPlayer.as"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" path="/MyPlayer/src/tool/API.as"/>
 </editors>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="1561" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="131" y="7"/>
-</item>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="2345" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="340" y="0"/>
-</item>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="2043" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="794" y="0"/>
-</item>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="2043" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="794" y="0"/>
-</item>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="2411" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="794" y="0"/>
-</item>
-<item historyLabel="test.as" index="2">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="TestUploads.as" index="3">
-<position info="not_deleted" x="933" y="11"/>
-</item>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="2411" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="794" y="0"/>
-</item>
-<item historyLabel="TestUploads.as" index="3">
-<position info="not_deleted" x="4274" y="0"/>
-</item>
-<item historyLabel="TestUploads.as" index="3">
-<position/>
-</item>
-<item historyLabel="TestUploads.as" index="3">
-<position info="not_deleted" x="7845" y="0"/>
-</item>
-<item historyLabel="DongHua.as" index="1">
-<position info="not_deleted" x="385" y="0"/>
-</item>
-<item historyLabel="MyPlayer.as" index="0">
-<position info="not_deleted" x="2156" y="0"/>
-</item>
-<item historyLabel="ArrayUtil.as" index="4">
-<position info="not_deleted" x="978" y="0"/>
-</item>
-<item historyLabel="Utils.as" index="5">
-<position info="not_deleted" x="417" y="0"/>
-</item>
-<item historyLabel="ArrayUtil.as" index="4">
-<position info="not_deleted" x="32" y="0"/>
-</item>
-<item historyLabel="ColorUtil.as" index="6">
-<position info="not_deleted" x="38" y="0"/>
-</item>
-<item historyLabel="MathUtil.as" index="7">
+<item historyLabel="AfterDateNoWeekend.as" index="2">
 <position info="not_deleted" x="28" y="0"/>
 </item>
-<item historyLabel="ObjectUtil.as" index="8">
-<position info="not_deleted" x="189" y="0"/>
-</item>
-<item historyLabel="Reflection.as" index="9">
-<position info="not_deleted" x="28" y="0"/>
-</item>
-<item historyLabel="GUID.as" index="10">
-<position info="not_deleted" x="294" y="0"/>
-</item>
-<item historyLabel="HanziToPinyin.as" index="11">
-<position info="not_deleted" x="249" y="0"/>
-</item>
-<item historyLabel="StringUtil.as" index="12">
-<position info="not_deleted" x="45" y="0"/>
-</item>
-<item historyLabel="AfterDateHandler.as" index="13">
-<position info="not_deleted" x="27" y="0"/>
-</item>
-<item historyLabel="AfterDateNoWeekend.as" index="14">
-<position info="not_deleted" x="28" y="0"/>
-</item>
-<item historyLabel="AmountDay.as" index="15">
+<item historyLabel="AmountDay.as" index="3">
 <position info="not_deleted" x="258" y="0"/>
 </item>
-<item historyLabel="TimeUtil.as" index="16">
-<position info="not_deleted" x="168" y="0"/>
-</item>
-<item historyLabel="TimerManager.as" index="17">
-<position info="not_deleted" x="152" y="0"/>
-</item>
-<item historyLabel="TianganDizhi.as" index="18">
-<position info="not_deleted" x="37" y="0"/>
-</item>
-<item historyLabel="Jishiqi.as" index="19">
-<position info="not_deleted" x="135" y="0"/>
-</item>
-<item historyLabel="DateAnimal.as" index="20">
-<position info="not_deleted" x="28" y="0"/>
-</item>
-<item historyLabel="Daojishi.as" index="21">
-<position info="not_deleted" x="28" y="0"/>
-</item>
-<item historyLabel="DateAnimal.as" index="20">
-<position info="not_deleted" x="28" y="0"/>
-</item>
-<item historyLabel="GreToLunarDate.as" index="22">
-<position info="not_deleted" x="53" y="0"/>
-</item>
-<item historyLabel="Jishiqi.as" index="19">
-<position info="not_deleted" x="135" y="0"/>
-</item>
-<item historyLabel="TianganDizhi.as" index="18">
-<position info="not_deleted" x="37" y="0"/>
-</item>
-<item historyLabel="AfterDateNoWeekend.as" index="14">
-<position info="not_deleted" x="28" y="0"/>
-</item>
-<item historyLabel="AmountDay.as" index="15">
-<position info="not_deleted" x="258" y="0"/>
-</item>
-<item historyLabel="BeforeDataHandler.as" index="23">
+<item historyLabel="BeforeDataHandler.as" index="5">
 <position info="not_deleted" x="31" y="0"/>
 </item>
-<item historyLabel="Daojishi.as" index="21">
+<item historyLabel="Daojishi.as" index="4">
 <position info="not_deleted" x="28" y="0"/>
 </item>
-<item historyLabel="AfterDateHandler.as" index="13">
+<item historyLabel="AfterDateHandler.as" index="1">
 <position info="not_deleted" x="27" y="0"/>
 </item>
-<item historyLabel="AfterDateNoWeekend.as" index="14">
+<item historyLabel="AfterDateNoWeekend.as" index="2">
 <position info="not_deleted" x="622" y="0"/>
 </item>
-<item historyLabel="XMLUtil.as" index="24">
+<item historyLabel="XMLUtil.as" index="6">
 <position info="not_deleted" x="1637" y="0"/>
 </item>
-<item active="true" historyLabel="Utils.as" index="5">
+<item historyLabel="Utils.as" index="0">
 <position info="not_deleted" x="417" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="2103" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="1051" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="1049" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="3954" y="13"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="4142" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="4162" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="1410" y="13"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="4040" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="3931" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="3797" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="3221" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="1393" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="2103" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="890" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="964" y="20"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="1306" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="1923" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="370" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="1878" y="0"/>
+</item>
+<item historyLabel="SoundTotalManager.as" index="8">
+<position info="not_deleted" x="1468" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="7">
+<position info="not_deleted" x="516" y="0"/>
+</item>
+<item historyLabel="TestFlv.mxml" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="TestFlv.mxml" index="10">
+<position info="not_deleted" x="1013" y="0"/>
+</item>
+<item historyLabel="TestFlv.mxml" index="10">
+<position info="not_deleted" x="1028" y="0"/>
+</item>
+<item historyLabel="EncodeToMp4.as" index="11">
+<position/>
+</item>
+<item historyLabel="TestFlv.mxml" index="9">
+<position info="not_deleted" x="409" y="0"/>
+</item>
+<item historyLabel="EncodeToMp4.as" index="11">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Net.as" index="12">
+<position info="not_deleted" x="381" y="0"/>
+</item>
+<item historyLabel="EncodeToMp4.as" index="11">
+<position info="not_deleted" x="336" y="0"/>
+</item>
+<item historyLabel="TestFlv.mxml" index="9">
+<position info="not_deleted" x="1166" y="0"/>
+</item>
+<item historyLabel="TestFlv-app.xml" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="Net.as" index="12">
+<position info="not_deleted" x="2621" y="0"/>
+</item>
+<item historyLabel="EncodeToMp4.as" index="11">
+<position info="not_deleted" x="5254" y="0"/>
+</item>
+<item historyLabel="Net.as" index="12">
+<position info="not_deleted" x="2621" y="0"/>
+</item>
+<item historyLabel="TestFlv-app.xml" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="TestFlv.mxml" index="9">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="MyPlayer.as" index="14">
+<position info="not_deleted" x="2035" y="0"/>
+</item>
+<item historyLabel="API.as" index="15">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="API.as" index="15">
+<position/>
+</item>
+<item historyLabel="API.as" index="15">
+<position info="not_deleted" x="513" y="0"/>
+</item>
+<item active="true" historyLabel="MyPlayer.as" index="14">
+<position info="not_deleted" x="2035" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -550,6 +542,27 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="API.as" tooltip="MyPlayer/src/tool/API.as">
+<persistable path="/MyPlayer/src/tool/API.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="MyPlayer.as" tooltip="MyPlayer/src/MyPlayer.as">
+<persistable path="/MyPlayer/src/MyPlayer.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.wst.xml.ui.internal.tabletree.XMLMultiPageEditorPart" name="TestFlv-app.xml" tooltip="TestFlv/src/TestFlv-app.xml">
+<persistable path="/TestFlv/src/TestFlv-app.xml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="Net.as" tooltip="TestFlv/src/Net.as">
+<persistable path="/TestFlv/src/Net.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="EncodeToMp4.as" tooltip="TestFlv/src/EncodeToMp4.as">
+<persistable path="/TestFlv/src/EncodeToMp4.as"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.mxml.MXMLEditor" name="TestFlv.mxml" tooltip="TestFlv/src/TestFlv.mxml">
+<persistable path="/TestFlv/src/TestFlv.mxml"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="SoundTotalManager.as" tooltip="MyPlayer/src/SoundManager/SoundTotalManager.as">
+<persistable path="/MyPlayer/src/SoundManager/SoundTotalManager.as"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="XMLUtil.as" tooltip="MyPlayer/src/UtilsTool/xmlUtils/XMLUtil.as">
 <persistable path="/MyPlayer/src/UtilsTool/xmlUtils/XMLUtil.as"/>
 </file>
@@ -573,27 +586,6 @@
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="TimerManager.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/TimerManager.as">
 <persistable path="/MyPlayer/src/UtilsTool/timeUtils/TimerManager.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="TimeUtil.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/TimeUtil.as">
-<persistable path="/MyPlayer/src/UtilsTool/timeUtils/TimeUtil.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="AmountDay.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/AmountDay.as">
-<persistable path="/MyPlayer/src/UtilsTool/timeUtils/AmountDay.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="AfterDateNoWeekend.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/AfterDateNoWeekend.as">
-<persistable path="/MyPlayer/src/UtilsTool/timeUtils/AfterDateNoWeekend.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="AfterDateHandler.as" tooltip="MyPlayer/src/UtilsTool/timeUtils/AfterDateHandler.as">
-<persistable path="/MyPlayer/src/UtilsTool/timeUtils/AfterDateHandler.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="StringUtil.as" tooltip="MyPlayer/src/UtilsTool/stringUtils/StringUtil.as">
-<persistable path="/MyPlayer/src/UtilsTool/stringUtils/StringUtil.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="HanziToPinyin.as" tooltip="MyPlayer/src/UtilsTool/stringUtils/HanziToPinyin.as">
-<persistable path="/MyPlayer/src/UtilsTool/stringUtils/HanziToPinyin.as"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="com.adobe.flexbuilder.editors.actionscript.ActionScriptEditor" name="GUID.as" tooltip="MyPlayer/src/UtilsTool/stringUtils/GUID.as">
-<persistable path="/MyPlayer/src/UtilsTool/stringUtils/GUID.as"/>
 </file>
 </mruList>
 </workbench>

@@ -11,13 +11,13 @@ package
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
 	import flash.system.Security;
-	
+
 	import SoundManager.SoundTotalManager;
-	
+
 	import debug.Debug;
-	
+
 	import inch.ZhuViewUIAsset;
-	
+
 	import module.DongHua;
 
 
@@ -50,23 +50,22 @@ package
 			stage.scaleMode=StageScaleMode.NO_SCALE;
 			this.removeEventListener(Event.ADDED_TO_STAGE, _addedToStageHandler);
 
-			_loader=new Loader();
-			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, _loadedHandler);
-			_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, _loaderErrorHandler);
-			_loader.load(new URLRequest(""), new LoaderContext(false, ApplicationDomain.currentDomain, null)); // 跨域问题
-
-
-			Debug.init(this, true, false);
+//			_loader=new Loader();
+//			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, _loadedHandler);
+//			_loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, _loaderErrorHandler);
+//			_loader.load(new URLRequest(""), new LoaderContext(false, ApplicationDomain.currentDomain, null)); // 跨域问题
+//
+//
+//			Debug.init(this, true, false);
 
 //			_view=new ZhuViewUIAsset();
 //			_view.y=(API.instance().thisHight - _view.height) / 2;
 //			this.addChild(_view);
 //			_view.btn_play.addEventListener(MouseEvent.CLICK, onClickPlay);
 //			_view.btn_tips.addEventListener(MouseEvent.CLICK, onTipsChange);
-			
-			
-			
-			this.addChild(SoundTotalManager.instance);
+
+ 
+	//		this.addChild(SoundTotalManager.instance);
 		}
 
 		protected function _loaderErrorHandler(event:IOErrorEvent):void
@@ -86,6 +85,7 @@ package
 			// TODO Auto-generated method stub
 
 		}
+	
 
 		protected function onClickPlay(event:MouseEvent):void
 		{

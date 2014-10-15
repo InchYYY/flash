@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+					   xmlns:s="library://ns.adobe.com/flex/spark"
+					   xmlns:mx="library://ns.adobe.com/flex/mx"
+					   width="620"
+					   height="620"
+					   initialize="windowedapplication1_initializeHandler(event)">
+	<fx:Declarations>
+		<!-- 将非可视元素（例如服务、值对象）放在此处 -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+
+			import spark.core.SpriteVisualElement;
+
+
+			protected function windowedapplication1_initializeHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				var mc:MovieClip=new MovieClip();
+				var ff:MovieClip=new MovieClip();
+				var frameid:int=0;
+				Net.getMov("635329099939677938.flv", function(v:Video, s:NetStream):void
+				{
+					var spr:SpriteVisualElement=new SpriteVisualElement();
+					mc.addChild(v);
+					spr.addChild(mc);
+					mov.addElement(spr);
+					//EncodeToMp4(录制对象,宽,高,开始帧,结束帧,虚拟时间轴)
+					new EncodeToMp4(mc, null, null, 50, 200, true);
+				});
+			}
+		]]>
+	</fx:Script>
+	<s:Group id="mov"
+			 width="100%"
+			 height="100%"/>
+</s:WindowedApplication>

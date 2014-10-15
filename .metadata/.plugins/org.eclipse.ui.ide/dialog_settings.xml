@@ -27,8 +27,13 @@
 		<item value="org.eclipse.wb.swing.feature:1.1.0.r37x201109091143"/>
 		<item value="org.eclipse.wst.xml_ui.feature:3.3.1.v201108102009-7H7EFZ3DxumTlaI6nheRdHo2p1KaDIL1Uz-S3PL"/>
 	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+	</section>
 	<section name="ResourceNavigator">
 		<item value="" key="ResourceWorkingSetFilter.STORE_WORKING_SET"/>
+		<item value="true" key="LINK_NAVIGATOR_TO_EDITOR"/>
 		<item value="2" key="ResourceViewer.STORE_SORT_TYPE"/>
 	</section>
 </section>
